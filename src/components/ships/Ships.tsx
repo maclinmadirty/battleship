@@ -58,36 +58,45 @@ const Ships = ({ shipLayout, windowInnerWidth }: Props) => {
           </Typography>
         </Box>
       </div>
-      <div style={{display: "flex", flexDirection: windowInnerWidth >= 769 ? "column" : "row", flexWrap: windowInnerWidth >= 769 ? "nowrap" : "wrap" }}>
-      {shipLayout.map((s: IShipLayout) => (
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flex: 1
-          }}
-        >
-          <div>{s.image}</div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: windowInnerWidth >= 769 ? "column" : "row",
+          flexWrap: windowInnerWidth >= 769 ? "nowrap" : "wrap",
+        }}
+      >
+        {shipLayout.map((s: IShipLayout) => (
           <div
             style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+              flex: 1,
             }}
           >
-            {s.positions.map((p: IShipPosition) => (
-              <img
-                src={p.isHit ? hitSmallImg : missSmallImg}
-                alt="a"
-                style={{ width: 20 }}
-              />
-            ))}
+            <div>{s.image}</div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              {s.positions
+                .sort(function (x, y) {
+                  return x.isHit === y.isHit ? 0 : x.isHit ? -1 : 1;
+                })
+                .map((p: IShipPosition) => (
+                  <img
+                    src={p.isHit ? hitSmallImg : missSmallImg}
+                    alt="a"
+                    style={{ width: 20 }}
+                  />
+                ))}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
       </div>
-
     </div>
   );
 };
