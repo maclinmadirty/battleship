@@ -38,8 +38,10 @@ const GameBoard = ({ windowInnerWidth }: Props) => {
       return 240;
     } else if (width >= 768 && width < 1024) {
       return 240;
+    } else if (width >= 425 && width < 768) {
+      return 160;
     } else {
-      return 200;
+      return 120;
     }
   };
 
@@ -215,7 +217,9 @@ const GameBoard = ({ windowInnerWidth }: Props) => {
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={1}>
             <Grid item xs={12} md={4} lg={4}>
-              <Ships shipLayout={shipLayout} windowInnerWidth={windowInnerWidth}/>
+              <Ships
+                shipLayout={shipLayout}
+              />
             </Grid>
             <Grid
               container
@@ -245,7 +249,9 @@ const GameBoard = ({ windowInnerWidth }: Props) => {
               <TileBoard board={board} onTileClick={handleTileClick} />
             </Grid>
             <Grid item xs={12} md={4} lg={4}>
-              <Ships shipLayout={shipLayout} windowInnerWidth={windowInnerWidth} />
+              <Ships
+                shipLayout={shipLayout}
+              />
             </Grid>
           </Grid>
         </Box>

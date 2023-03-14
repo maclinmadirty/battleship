@@ -8,6 +8,8 @@ import { IShipLayout, IShipPosition, ITile } from "../../models/board.model";
 import hitSmallImg from "../../assets/Hitsmall.png";
 import missSmallImg from "../../assets/Misssmall.png";
 
+import withResize from "../../hoc/withResize";
+
 interface Props {
   shipLayout: IShipLayout[];
   windowInnerWidth: number;
@@ -90,4 +92,4 @@ const Ships = ({ shipLayout, windowInnerWidth }: Props) => {
   );
 };
 
-export default Ships;
+export default withResize(Ships);
